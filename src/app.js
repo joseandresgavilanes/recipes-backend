@@ -2,11 +2,11 @@
 const express = require("express");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const db = require("./utils/database");
 
 //? Files
-const swaggerDoc = require("../swagger.json");
 const { port } = require("./config");
 //* Routes
 const userRouter = require("./users/users.router");
@@ -48,8 +48,7 @@ app.get("/", (req, res) => {
     users: `localhost:${port}/api/v1/users`,
   });
 });
-
-app.use("/api/docs", swaggerUi.serve, swaggerUi.serve(swaggerDoc));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoryRouter);
