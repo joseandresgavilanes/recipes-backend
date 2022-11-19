@@ -1,23 +1,33 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes } = require("sequelize");
 
-const db = require('../utils/database')
+const db = require("../utils/database");
 
-const Categories = db.define('categories', {
+const Categories = db.define(
+  "categories",
+  {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false
-    }, 
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-    }
-}, {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    urlImg: {
+      type: DataTypes.STRING,
+      field: "url_img",
+      validate: {
+        //isUrl: true
+      },
+    },
+  },
+  {
     //? Evita que sequelize cree la columna de createdAt y updatedAt
-    timestamps: false
-})
+    timestamps: false,
+  }
+);
 
-
-module.exports = Categories
+module.exports = Categories;
