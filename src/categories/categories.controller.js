@@ -20,11 +20,11 @@ const getCategoryById = async (id) => {
 };
 
 const createCategory = async (data) => {
-  const data = await Categories.create({
+  const reponse = await Categories.create({
     name: data.name,
     urlImg: data.urlImg,
   });
-  return data;
+  return reponse;
 };
 
 const deleteCategory = async (id) => {
